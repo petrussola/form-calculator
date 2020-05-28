@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #f9fafb;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: 'Open Sans', 'sans-serif';
+}
+
+body > section {
+	border: 1px solid gray;
+	background-color: #f9fafb;
+	width: 50vw;
+	padding: 1rem;
+	margin: 1rem;
+}
+
+.form-control {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 1rem 0;
+}
+
+.form-control input,
+.form-control select {
+	font-size: 1rem;
+	padding: 0.5rem;
+	border: 1px solid #f0f0f0;
+}
+
+.form-control * {
+	padding: 0.2rem 0;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control small {
+	visibility: hidden;
+}
+
+.form-control.error input {
+	border-color: red;
+}
+
+.form-control.error small {
+	color: red;
+	visibility: visible;
+}
+
+button {
+	width: 100%;
+	padding: 0.5rem;
+	background-color: #3498db;
+	border: 1px solid #3498db;
+	color: white;
+	border-radius: 4px;
+}
+
+.form-output {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form-output h1 {
+	font-size: 1.5rem;
+}
