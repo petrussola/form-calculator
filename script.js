@@ -25,5 +25,5 @@ form.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const result = operate(operand1.value, operand2.value, operator.value);
 	const place = output.querySelector('h1');
-	place.innerText = result;
+	place.innerText = result.toLocaleString();
 });
