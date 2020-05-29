@@ -51,9 +51,18 @@ body > section {
 	border-color: red;
 }
 
+.form-control.success input {
+	border-color: green;
+}
+
 .form-control.error small {
 	color: red;
 	visibility: visible;
+}
+
+.form-control.success small {
+	color: green;
+	visibility: hidden;
 }
 
 button {

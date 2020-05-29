@@ -12,6 +12,12 @@ function showError(input, message) {
 	small.innerText = message;
 }
 
+// show Success
+function showSuccess(input) {
+	const formControl = input.parentElement;
+	formControl.className = 'form-control success';
+}
+
 // operate function
 function operate(operand1, operand2, operator) {
 	const num1 = parseFloat(operand1, 10);
@@ -28,23 +34,31 @@ function operate(operand1, operand2, operator) {
 	}
 }
 
-// check if number
-function isNumber(operand) {
-	const notNumber = isNaN(operand.value);
-	if (notNumber) {
-		showError(operand, `${operand.id} should be a number`);
-		return false;
-	}
-	return true;
-}
-
-// check if operand is selected
-function isFilled(inputArr) {
+function isValidNumber(inputArr) {
+	let allGood = true;
 	inputArr.forEach((item) => {
-		if (item.value === '') {
-			showError(item, `${item.id} needs to be filled`);
+		if (isNaN(item.value) || item.value === '') {
+			allGood = false;
+			showError(item, `${item.id} should be a number`);
+			printResult('--');
+		} else {
+			showSuccess(item);
 		}
 	});
+	return allGood;
+}
+
+// check if operator is selected
+function isOperatorSelected(operator) {
+	let allGood = true;
+	if (operator.value === '') {
+		allGood = false;
+		showError(operator, `${operator.id} needs to be filled`);
+		printResult('--');
+	} else {
+		showSuccess(operator);
+	}
+	return allGood;
 }
 
 // print result on the screen
@@ -57,15 +71,13 @@ function printResult(number) {
 	}
 }
 
+// event listener
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
-	isFilled([operand1, operand2, operator]);
-	const checkOperand1 = isNumber(operand1);
-	const checkOperand2 = isNumber(operand2);
-	if (checkOperand1 && checkOperand2) {
+	const valid = isValidNumber([operand1, operand2]);
+	const selected = isOperatorSelected(operator);
+	if (valid && selected) {
 		const result = operate(operand1.value, operand2.value, operator.value);
 		printResult(result);
-	} else {
-		printResult('--');
 	}
 });
