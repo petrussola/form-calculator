@@ -9,7 +9,6 @@ function showError(input, message) {
 	const formControl = input.parentElement;
 	formControl.className = 'form-control error';
 	const small = formControl.querySelector('small');
-	console.log(small);
 	small.innerText = message;
 }
 
@@ -39,6 +38,16 @@ function isNumber(operand) {
 	return true;
 }
 
+// check if operand is selected
+function isFilled(inputArr) {
+	inputArr.forEach((item) => {
+		if (item.value === '') {
+			showError(item, `${item.id} needs to be filled`);
+		}
+	});
+}
+
+// print result on the screen
 function printResult(number) {
 	const place = output.querySelector('h1');
 	if (number === '--') {
@@ -50,6 +59,7 @@ function printResult(number) {
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
+	isFilled([operand1, operand2, operator]);
 	const checkOperand1 = isNumber(operand1);
 	const checkOperand2 = isNumber(operand2);
 	if (checkOperand1 && checkOperand2) {
